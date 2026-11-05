@@ -34,3 +34,19 @@ RUN curl -fL https://github.com/ebiggers/libdeflate/archive/refs/tags/v1.26.tar.
     cmake --install /tmp/libdeflate-1.26/build && \
     rm -rf /tmp/libdeflate-1.26 /tmp/libdeflate-1.26.tar.gz
 
+
+# Build and install HTSlib 1.25
+RUN curl -fL https://github.com/samtools/htslib/releases/download/1.25/htslib-1.25.tar.bz2 \
+        -o /tmp/htslib-1.25.tar.bz2 && \
+    tar -xjf /tmp/htslib-1.25.tar.bz2 -C /tmp && \
+    cd /tmp/htslib-1.25 && \
+    ./configure \
+        --prefix="${SOFT}/htslib-1.25" \
+        --with-libdeflate \
+        CPPFLAGS="-I${SOFT}/libdeflate-1.26/include" \
+        LDFLAGS="-L${SOFT}/libdeflate-1.26/lib -Wl,-rpath,${SOFT}/libdeflate-1.26/lib" && \
+    make -j2 && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/htslib-1.25 /tmp/htslib-1.25.tar.bz2
+
