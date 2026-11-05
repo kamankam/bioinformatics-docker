@@ -51,8 +51,22 @@ RUN curl -fL https://github.com/samtools/htslib/releases/download/1.25/htslib-1.
     rm -rf /tmp/htslib-1.25 /tmp/htslib-1.25.tar.bz2
 
 
+# Build and install samtools 1.25
+RUN curl -fL https://github.com/samtools/samtools/releases/download/1.25/samtools-1.25.tar.bz2 \
+        -o /tmp/samtools-1.25.tar.bz2 && \
+    tar -xjf /tmp/samtools-1.25.tar.bz2 -C /tmp && \
+    cd /tmp/samtools-1.25 && \
+    ./configure \
+        --prefix="${SOFT}/samtools-1.25" \
+        --with-htslib="${SOFT}/htslib-1.25" \
+        LDFLAGS="-L${SOFT}/htslib-1.25/lib -Wl,-rpath,${SOFT}/htslib-1.25/lib" && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/samtools-1.25 /tmp/samtools-1.25.tar.bz2
+
 # Add specialized executable directories to PATH
-ENV PATH="${SOFT}/libdeflate-1.26/bin:${SOFT}/htslib-1.25/bin:${PATH}"
+ENV PATH="${SOFT}/libdeflate-1.26/bin:${SOFT}/htslib-1.25/bin:${SOFT}/samtools-1.25/bin:${PATH}"
 
 # Add specialized shared library directories
 ENV LD_LIBRARY_PATH="${SOFT}/libdeflate-1.26/lib:${SOFT}/htslib-1.25/lib"
@@ -62,4 +76,5 @@ ENV BGZIP="${SOFT}/htslib-1.25/bin/bgzip" \
     TABIX="${SOFT}/htslib-1.25/bin/tabix" \
     HTSFILE="${SOFT}/htslib-1.25/bin/htsfile" \
     LIBDEFLATEGZIP="${SOFT}/libdeflate-1.26/bin/libdeflate-gzip" \
-    LIBDEFLATEGUNZIP="${SOFT}/libdeflate-1.26/bin/libdeflate-gunzip"
+    LIBDEFLATEGUNZIP="${SOFT}/libdeflate-1.26/bin/libdeflate-gunzip" \
+    SAMTOOLS="${SOFT}/samtools-1.25/bin/samtools"
