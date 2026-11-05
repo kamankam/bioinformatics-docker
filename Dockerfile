@@ -65,11 +65,42 @@ RUN curl -fL https://github.com/samtools/samtools/releases/download/1.25/samtool
     cd / && \
     rm -rf /tmp/samtools-1.25 /tmp/samtools-1.25.tar.bz2
 
+
+# Build and install bcftools 1.25
+RUN curl -fL https://github.com/samtools/bcftools/releases/download/1.25/bcftools-1.25.tar.bz2 \
+        -o /tmp/bcftools-1.25.tar.bz2 && \
+    tar -xjf /tmp/bcftools-1.25.tar.bz2 -C /tmp && \
+    cd /tmp/bcftools-1.25 && \
+    ./configure \
+        --prefix="${SOFT}/bcftools-1.25" \
+        --with-htslib="${SOFT}/htslib-1.25" \
+        LDFLAGS="-L${SOFT}/htslib-1.25/lib -Wl,-rpath,${SOFT}/htslib-1.25/lib" && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/bcftools-1.25 /tmp/bcftools-1.25.tar.bz2
+
+
+# Build and install VCFtools 0.1.17
+RUN curl -fL https://github.com/vcftools/vcftools/releases/download/v0.1.17/vcftools-0.1.17.tar.gz \
+        -o /tmp/vcftools-0.1.17.tar.gz && \
+    tar -xzf /tmp/vcftools-0.1.17.tar.gz -C /tmp && \
+    cd /tmp/vcftools-0.1.17 && \
+    ./configure --prefix="${SOFT}/vcftools-0.1.17" && \
+    make -j"$(nproc)" && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/vcftools-0.1.17 /tmp/vcftools-0.1.17.tar.gz
+
+
+
 # Add specialized executable directories to PATH
-ENV PATH="${SOFT}/libdeflate-1.26/bin:${SOFT}/htslib-1.25/bin:${SOFT}/samtools-1.25/bin:${PATH}"
+ENV PATH="${SOFT}/libdeflate-1.26/bin:${SOFT}/htslib-1.25/bin:${SOFT}/samtools-1.25/bin:${SOFT}/bcftools-1.25/bin:${SOFT}/vcftools-0.1.17/bin:${PATH}"
 
 # Add specialized shared library directories
 ENV LD_LIBRARY_PATH="${SOFT}/libdeflate-1.26/lib:${SOFT}/htslib-1.25/lib"
+# Set path to VCFtools Perl modules
+ENV PERL5LIB="${SOFT}/vcftools-0.1.17/share/perl/5.34.0"
 
 # Set full paths to installed programs
 ENV BGZIP="${SOFT}/htslib-1.25/bin/bgzip" \
@@ -77,4 +108,6 @@ ENV BGZIP="${SOFT}/htslib-1.25/bin/bgzip" \
     HTSFILE="${SOFT}/htslib-1.25/bin/htsfile" \
     LIBDEFLATEGZIP="${SOFT}/libdeflate-1.26/bin/libdeflate-gzip" \
     LIBDEFLATEGUNZIP="${SOFT}/libdeflate-1.26/bin/libdeflate-gunzip" \
-    SAMTOOLS="${SOFT}/samtools-1.25/bin/samtools"
+    SAMTOOLS="${SOFT}/samtools-1.25/bin/samtools" \
+    BCFTOOLS="${SOFT}/bcftools-1.25/bin/bcftools" \
+    VCFTOOLS="${SOFT}/vcftools-0.1.17/bin/vcftools"
