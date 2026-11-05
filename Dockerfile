@@ -4,7 +4,7 @@ ENV SOFT=/soft
 
 WORKDIR ${SOFT}
 
-# Install tools and libraries required for building bioinformatics software
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -22,7 +22,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-# Build and install libdeflate 1.26
+# Install libdeflate.v1.26
 RUN curl -fL https://github.com/ebiggers/libdeflate/archive/refs/tags/v1.26.tar.gz \
         -o /tmp/libdeflate-1.26.tar.gz && \
     tar -xzf /tmp/libdeflate-1.26.tar.gz -C /tmp && \
@@ -35,7 +35,7 @@ RUN curl -fL https://github.com/ebiggers/libdeflate/archive/refs/tags/v1.26.tar.
     rm -rf /tmp/libdeflate-1.26 /tmp/libdeflate-1.26.tar.gz
 
 
-# Build and install HTSlib 1.25
+# Install HTSlib.v1.25
 RUN curl -fL https://github.com/samtools/htslib/releases/download/1.25/htslib-1.25.tar.bz2 \
         -o /tmp/htslib-1.25.tar.bz2 && \
     tar -xjf /tmp/htslib-1.25.tar.bz2 -C /tmp && \
@@ -51,7 +51,7 @@ RUN curl -fL https://github.com/samtools/htslib/releases/download/1.25/htslib-1.
     rm -rf /tmp/htslib-1.25 /tmp/htslib-1.25.tar.bz2
 
 
-# Build and install samtools 1.25
+# Install samtools.v1.25
 RUN curl -fL https://github.com/samtools/samtools/releases/download/1.25/samtools-1.25.tar.bz2 \
         -o /tmp/samtools-1.25.tar.bz2 && \
     tar -xjf /tmp/samtools-1.25.tar.bz2 -C /tmp && \
@@ -66,7 +66,7 @@ RUN curl -fL https://github.com/samtools/samtools/releases/download/1.25/samtool
     rm -rf /tmp/samtools-1.25 /tmp/samtools-1.25.tar.bz2
 
 
-# Build and install bcftools 1.25
+# Install bcftools.v1.25
 RUN curl -fL https://github.com/samtools/bcftools/releases/download/1.25/bcftools-1.25.tar.bz2 \
         -o /tmp/bcftools-1.25.tar.bz2 && \
     tar -xjf /tmp/bcftools-1.25.tar.bz2 -C /tmp && \
@@ -81,7 +81,7 @@ RUN curl -fL https://github.com/samtools/bcftools/releases/download/1.25/bcftool
     rm -rf /tmp/bcftools-1.25 /tmp/bcftools-1.25.tar.bz2
 
 
-# Build and install VCFtools 0.1.17
+# Install VCFtools.v0.1.17
 RUN curl -fL https://github.com/vcftools/vcftools/releases/download/v0.1.17/vcftools-0.1.17.tar.gz \
         -o /tmp/vcftools-0.1.17.tar.gz && \
     tar -xzf /tmp/vcftools-0.1.17.tar.gz -C /tmp && \
@@ -94,15 +94,15 @@ RUN curl -fL https://github.com/vcftools/vcftools/releases/download/v0.1.17/vcft
 
 
 
-# Add specialized executable directories to PATH
+# Set executable directories in PATH
 ENV PATH="${SOFT}/libdeflate-1.26/bin:${SOFT}/htslib-1.25/bin:${SOFT}/samtools-1.25/bin:${SOFT}/bcftools-1.25/bin:${SOFT}/vcftools-0.1.17/bin:${PATH}"
 
-# Add specialized shared library directories
+# Set library path
 ENV LD_LIBRARY_PATH="${SOFT}/libdeflate-1.26/lib:${SOFT}/htslib-1.25/lib"
-# Set path to VCFtools Perl modules
+# Set Perl modules path
 ENV PERL5LIB="${SOFT}/vcftools-0.1.17/share/perl/5.34.0"
 
-# Set full paths to installed programs
+# Set program paths
 ENV BGZIP="${SOFT}/htslib-1.25/bin/bgzip" \
     TABIX="${SOFT}/htslib-1.25/bin/tabix" \
     HTSFILE="${SOFT}/htslib-1.25/bin/htsfile" \
