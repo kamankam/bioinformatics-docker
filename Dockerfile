@@ -116,3 +116,6 @@ ENV BGZIP="${SOFT}/htslib-1.25/bin/bgzip" \
     SAMTOOLS="${SOFT}/samtools-1.25/bin/samtools" \
     BCFTOOLS="${SOFT}/bcftools-1.25/bin/bcftools" \
     VCFTOOLS="${SOFT}/vcftools-0.1.17/bin/vcftools"
+
+# Copy SNP processing scripts
+COPY fp-snps/scripts/ /soft/fp-snps/scripts/
