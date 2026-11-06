@@ -18,9 +18,14 @@ RUN apt-get update && \
         libncurses-dev \
         curl \
         ca-certificates \
-        perl && \
+        perl \
+	python3 \
+        python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
+
+# Install pysam.v0.24.1
+RUN python3 -m pip install --no-cache-dir "pysam==0.24.1"
 
 # Install libdeflate.v1.26
 RUN curl -fL https://github.com/ebiggers/libdeflate/archive/refs/tags/v1.26.tar.gz \
