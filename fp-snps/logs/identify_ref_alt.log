@@ -1,0 +1,38 @@
+2026-11-06 14:47:36 INFO: Starting SNP processing
+2026-11-06 14:47:36 INFO: Input file: data/FP_SNPs_10k_GB38_twoAllelsFormat.tsv
+2026-11-06 14:47:36 INFO: Output file: data/FP_SNPs_10k_GB38_REF_ALT.tsv
+2026-11-06 14:47:36 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr1.fa
+2026-11-06 14:47:36 WARNING: Reference mismatch for rs2274617 at chr1:145899155 (alleles: T/C, reference: G)
+2026-11-06 14:47:36 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr2.fa
+2026-11-06 14:47:37 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr3.fa
+2026-11-06 14:47:37 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr4.fa
+2026-11-06 14:47:37 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr5.fa
+2026-11-06 14:47:37 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr6.fa
+2026-11-06 14:47:37 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr7.fa
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr8.fa
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr9.fa
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr10.fa
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs4342964 at chr10:47420743 (alleles: T/C, reference: G)
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs11204215 at chr10:47320207 (alleles: C/A, reference: T)
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs12414155 at chr10:47268342 (alleles: T/C, reference: A)
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs2790937 at chr10:47099482 (alleles: G/A, reference: T)
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs10994675 at chr10:46031829 (alleles: A/G, reference: C)
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr11.fa
+2026-11-06 14:47:38 WARNING: Reference mismatch for rs527464 at chr11:54678670 (alleles: C/T, reference: G)
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr12.fa
+2026-11-06 14:47:38 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr13.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr14.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr15.fa
+2026-11-06 14:47:39 WARNING: Reference mismatch for rs7174982 at chr15:22907410 (alleles: T/C, reference: G)
+2026-11-06 14:47:39 WARNING: Reference mismatch for rs4778334 at chr15:22832212 (alleles: T/C, reference: A)
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr16.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr17.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr18.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr19.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr20.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr21.fa
+2026-11-06 14:47:39 INFO: Opened reference FASTA: /ref/GRCh38.d1.vd1_mainChr/sepChrs/chr22.fa
+2026-11-06 14:47:39 INFO: Total SNPs: 10000
+2026-11-06 14:47:39 INFO: Matched SNPs: 9991
+2026-11-06 14:47:39 INFO: Mismatched SNPs: 9
+2026-11-06 14:47:39 INFO: SNP processing completed
