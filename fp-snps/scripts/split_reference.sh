@@ -1,11 +1,14 @@
 #!/bin/bash
-
 # Split GRCh38.d1.vd1 into 25 main chromosome FASTA files.
+
+set -e
 
 REF_DIR="$1"
 
 INPUT="$REF_DIR/GRCh38.d1.vd1.fa"
 OUTPUT_DIR="$REF_DIR/GRCh38.d1.vd1_mainChr/sepChrs"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting reference genome splitting..."
 
 mkdir -p "$OUTPUT_DIR"
 
@@ -26,4 +29,6 @@ output != "" {
     print > output
 }
 ' "$INPUT"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Reference genome splitting completed."
 
