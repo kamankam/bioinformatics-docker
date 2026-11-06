@@ -32,3 +32,11 @@ output != "" {
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Reference genome splitting completed."
 
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting FASTA indexing..."
+
+# Create a FASTA index for each chromosome.
+for fasta in "$OUTPUT_DIR"/chr*.fa; do
+    samtools faidx "$fasta"
+done
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] FASTA indexing completed."
